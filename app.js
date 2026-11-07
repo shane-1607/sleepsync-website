@@ -29,12 +29,6 @@ if (window.location.hash === "#about-sleepsync") {
 
 const helpMenuTrigger = document.getElementById("help-menu-trigger");
 const helpMenuPanel = document.getElementById("help-menu-panel");
-const trdDialog = document.getElementById("trd-dialog");
-const openTrdButton = document.getElementById("open-trd");
-const trdFrame = document.querySelector(".help-dialog-frame");
-const prdDialog = document.getElementById("prd-dialog");
-const openPrdButton = document.getElementById("open-prd");
-const prdFrame = document.querySelector("#prd-dialog .help-dialog-frame");
 
 function setHelpMenuOpen(isOpen) {
   if (!helpMenuTrigger || !helpMenuPanel) return;
@@ -45,35 +39,6 @@ function setHelpMenuOpen(isOpen) {
 helpMenuTrigger?.addEventListener("click", () => {
   setHelpMenuOpen(helpMenuPanel.hidden);
 });
-
-openTrdButton?.addEventListener("click", () => {
-  setHelpMenuOpen(false);
-  if (trdDialog && !trdDialog.open) trdDialog.showModal();
-});
-
-document.getElementById("close-trd")?.addEventListener("click", () => trdDialog?.close());
-openPrdButton?.addEventListener("click", () => {
-  setHelpMenuOpen(false);
-  if (prdDialog && !prdDialog.open) prdDialog.showModal();
-});
-
-document.getElementById("close-prd")?.addEventListener("click", () => prdDialog?.close());
-const closeDialogOnFrameEscape = (dialog) => (event) => {
-  if (event.key === "Escape" && dialog?.open) {
-    event.preventDefault();
-    dialog.close();
-  }
-};
-const attachFrameKeyboardHandler = (frame, dialog) => {
-  frame?.contentDocument?.addEventListener("keydown", closeDialogOnFrameEscape(dialog));
-};
-trdFrame?.addEventListener("load", () => attachFrameKeyboardHandler(trdFrame, trdDialog));
-prdFrame?.addEventListener("load", () => attachFrameKeyboardHandler(prdFrame, prdDialog));
-attachFrameKeyboardHandler(trdFrame, trdDialog);
-attachFrameKeyboardHandler(prdFrame, prdDialog);
-[trdDialog, prdDialog].forEach((dialog) => dialog?.addEventListener("click", (event) => {
-  if (event.target === dialog) dialog.close();
-}));
 
 document.addEventListener("click", (event) => {
   if (!helpMenuTrigger?.contains(event.target) && !helpMenuPanel?.contains(event.target)) {

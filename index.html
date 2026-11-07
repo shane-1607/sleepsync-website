@@ -45,9 +45,15 @@
         <button class="nav-link" type="button" data-view="trends">Trends</button>
         <div class="help-menu">
           <button class="nav-link help-menu-trigger" id="help-menu-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="help-menu-panel">Help</button>
-          <div class="help-menu-panel" id="help-menu-panel" role="menu" hidden>
-            <button class="help-menu-item" id="open-prd" type="button" role="menuitem">Product requirements document</button>
-            <button class="help-menu-item" id="open-trd" type="button" role="menuitem">Technical requirements document</button>
+          <div class="help-menu-panel" id="help-menu-panel" role="region" aria-labelledby="help-menu-title" hidden>
+            <h2 id="help-menu-title">Quick help</h2>
+            <ul>
+              <li><strong>Cycle:</strong> Start Sleep to time a session, then Stop Sleep when you’re done. Sessions of at least 15 minutes are saved automatically. Sleep stages aren’t measured.</li>
+              <li><strong>Relax:</strong> Choose a sound, adjust its volume, and select Stop sound to end playback.</li>
+              <li><strong>Guides:</strong> Browse practical ideas for a calmer bedtime routine.</li>
+              <li><strong>Trends:</strong> Enter the date and hours you slept, then choose Log sleep to save an entry and review your history. Your score is an estimate based on sleep duration.</li>
+            </ul>
+            <p>Your entries are saved in this browser on this device. SleepSync offers general wellness information, not medical advice.</p>
           </div>
         </div>
       </nav>
@@ -291,21 +297,6 @@
       </section>
 
     </main>
-
-    <dialog class="help-dialog" id="trd-dialog" aria-labelledby="trd-dialog-title">
-      <div class="help-dialog-header">
-        <h2 id="trd-dialog-title">SleepSync technical requirements</h2>
-        <button class="help-dialog-close" id="close-trd" type="button" aria-label="Close technical requirements">×</button>
-      </div>
-      <iframe class="help-dialog-frame" src="trd.html?modal=1" title="SleepSync Technical Requirements Document"></iframe>
-    </dialog>
-    <dialog class="help-dialog" id="prd-dialog" aria-labelledby="prd-dialog-title">
-      <div class="help-dialog-header">
-        <h2 id="prd-dialog-title">SleepSync product requirements</h2>
-        <button class="help-dialog-close" id="close-prd" type="button" aria-label="Close product requirements">×</button>
-      </div>
-      <iframe class="help-dialog-frame" src="prd.html?modal=1" title="SleepSync Product Requirements Document"></iframe>
-    </dialog>
 
     <footer class="site-footer">
       <a class="footer-brand" href="index.html">Sleep<span>Sync</span></a>

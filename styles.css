@@ -265,8 +265,13 @@ h1, h2 { font-family: "Manrope", "Segoe UI", sans-serif; }
 .policy-content section { padding: 19px 0; border-top: 1px solid rgba(190, 201, 255, .11); }
 .policy-content section:first-of-type { border-top: 0; padding-top: 0; }
 .policy-content h2 { margin: 0 0 9px; font-size: 16px; font-weight: 600; }
+.policy-content h3 { margin: 15px 0 8px; color: #ecebff; font-size: 13px; font-weight: 600; }
 .policy-content section p { margin: 0 0 9px; color: var(--muted); font-size: 13px; line-height: 1.8; }
 .policy-content section p:last-child { margin-bottom: 0; }
+.policy-content ul { display: grid; gap: 7px; margin: 10px 0; padding-left: 20px; color: var(--muted); font-size: 13px; line-height: 1.8; }
+.policy-content li::marker { color: var(--blue-bright); }
+.policy-content strong { color: #ecebff; font-weight: 600; }
+.policy-content a { color: #c7c3ff; text-underline-offset: 3px; }
 .document-main { max-width: 860px; margin: 0 auto; padding: 48px 0 64px; }
 .document-heading { margin-bottom: 25px; text-align: center; }
 .document-heading h1 { margin: 0; font-size: clamp(32px, 4.5vw, 48px); font-weight: 600; line-height: 1.12; letter-spacing: -1.9px; }

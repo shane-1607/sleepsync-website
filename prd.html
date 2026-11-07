@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d28">
+  <meta name="description" content="SleepSync product requirements document: purpose, user-facing features, scope, and acceptance criteria.">
+  <title>Product Requirements — SleepSync</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="sky" aria-hidden="true">
+    <span class="sky-star star-one"></span><span class="sky-star star-two"></span>
+    <span class="sky-star star-three"></span><span class="sky-star star-four"></span>
+    <span class="sky-star star-five"></span><span class="sky-star star-six"></span>
+    <span class="sky-star star-seven"></span><span class="sky-star star-eight"></span>
+    <span class="sky-glow"></span>
+  </div>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="SleepSync home">
+        <span class="brand-icon" aria-hidden="true"><img src="assets/sleepsync-icon.png" alt=""></span>
+        <span class="brand-name">Sleep<span>Sync</span></span>
+      </a>
+      <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Back to SleepSync</a>
+    </header>
+    <main class="document-main">
+      <section class="document-heading">
+        <p class="eyebrow"><span class="status-dot"></span> PROJECT DOCUMENT</p>
+        <h1>Product requirements <span>document</span></h1>
+        <p>SleepSync · Draft 1.0 · November 6, 2026</p>
+      </section>
+      <article class="glass-card document-content">
+        <section>
+          <h2>1. Product overview</h2>
+          <p>SleepSync is a sleep-wellness companion intended to help users establish a bedtime routine, explore relaxation audio, learn basic sleep-hygiene practices, and review sleep-related information.</p>
+          <p>The supplied app screens show four main areas: Cycle, Relax, Guides, and Trends. A separate website presents the project and includes a browser-based sleep timer, manual sleep log, relaxation sounds, and guides.</p>
+        </section>
+        <section>
+          <h2>2. Product goals</h2>
+          <ul>
+            <li>Give users a simple place to start and end a bedtime sleep-timer session.</li>
+            <li>Offer relaxation audio options for a user-controlled wind-down routine.</li>
+            <li>Present approachable educational guidance about sleep habits and sleep stages.</li>
+            <li>Let users enter sleep duration and review a history or trend summary.</li>
+            <li>Describe data handling clearly and avoid presenting estimates as clinical measurements.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>3. Intended users</h2>
+          <p>People looking for a lightweight sleep-wellness aid: users who want to time a bedtime routine, use calming audio, read sleep-hygiene tips, or keep a simple personal record. The app is not intended to diagnose or treat sleep disorders.</p>
+        </section>
+        <section>
+          <h2>4. User-facing feature requirements</h2>
+          <ul>
+            <li><strong>Cycle:</strong> Present a sleep timer and controls to begin and end a session. The source screenshots show elapsed time and sleep-stage labels; whether stage values are calculated, manually entered, or sensor-derived is unconfirmed.</li>
+            <li><strong>Relax:</strong> Present selectable relaxation-audio options and a way to stop playback. The original app's audio assets, playback implementation, and offline behavior are unconfirmed.</li>
+            <li><strong>Guides:</strong> Provide readable sleep-hygiene guidance, such as a regular sleep schedule, a restful environment, and winding down before bed.</li>
+            <li><strong>Trends:</strong> Allow sleep duration to be logged and show a sleep score or summary. The scoring formula and the persistence behavior of the original Android app are unconfirmed.</li>
+            <li><strong>Privacy:</strong> Explain what information is collected, where it is stored, whether it is shared, and how the user can delete it. Confirm the Android app's behavior before making app-specific privacy claims.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>5. Scope and limitations</h2>
+          <p>Heart-rate stability appears in the supplied promotional artwork, but no heart-rate sensor integration or measurement method has been confirmed. Do not promise heart-rate monitoring or automatic sleep-stage detection without a verified implementation and appropriate testing.</p>
+          <p>Sleep-cycle duration and stage descriptions are educational estimates unless confirmed otherwise. SleepSync is a general wellness project, not a medical device or substitute for professional care.</p>
+        </section>
+        <section>
+          <h2>6. Acceptance criteria</h2>
+          <ul>
+            <li>Users can identify and navigate the Cycle, Relax, Guides, and Trends areas.</li>
+            <li>Timer controls give clear feedback about whether a session is running.</li>
+            <li>Sleep-duration entries and summaries are understandable and avoid implying clinical accuracy.</li>
+            <li>Audio starts only after a user action and can be stopped.</li>
+            <li>Privacy and health limitations are easy to find and written in plain language.</li>
+            <li>The experience is usable on common mobile screen sizes and with keyboard navigation.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>7. Project credits</h2>
+          <p><strong>Developer:</strong> Shane S. Bicarme · BSIT 3-WMAD, ISU Cauayan Campus<br>
+          <strong>Consultant/Adviser:</strong> Dr. Erick R. Abuzo, DIT</p>
+        </section>
+        <section>
+          <h2>8. Items to confirm with the Android project</h2>
+          <p>Before treating this draft as a final app specification, confirm the Android app's sleep-score formula, stage-timing behavior, audio tracks and permissions, local data storage and deletion method, supported Android versions, offline support, accessibility behavior, and whether any health sensors or network services are used.</p>
+        </section>
+      </article>
+    </main>
+    <footer class="site-footer">
+      <a class="footer-brand" href="index.html">Sleep<span>Sync</span></a>
+      <p>SleepSync product requirements · Draft 1.0</p>
+      <div class="footer-links"><a href="trd.html">Technical requirements</a><span aria-hidden="true">·</span><a href="privacy.html">Privacy policy</a></div>
+    </footer>
+  </div>
+    <script>
+      if (new URLSearchParams(window.location.search).has("modal")) {
+        document.body.classList.add("document-embed");
+      }
+    </script>
+</body>
+</html>

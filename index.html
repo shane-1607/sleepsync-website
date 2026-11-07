@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d28">
+  <meta name="description" content="SleepSync is a sleep wellness companion with a sleep timer, relaxation sounds, sleep-stage education, trends, and practical bedtime guides.">
+  <title>SleepSync — Rest &amp; Restore</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="sky" aria-hidden="true">
+    <span class="sky-star star-one"></span>
+    <span class="sky-star star-two"></span>
+    <span class="sky-star star-three"></span>
+    <span class="sky-star star-four"></span>
+    <span class="sky-star star-five"></span>
+    <span class="sky-star star-six"></span>
+    <span class="sky-star star-seven"></span>
+    <span class="sky-star star-eight"></span>
+    <span class="sky-glow"></span>
+    <svg class="sky-moon" viewBox="0 0 220 260" role="presentation">
+      <path d="M151 22C72 40 33 115 56 184c19 58 79 82 137 49-58 10-103-27-105-81-2-50 24-98 63-130Z" fill="url(#moon-fill)" stroke="#f4e3ad" stroke-width="2"/>
+      <path d="M152 25 88 229M135 31 69 210M116 44 59 187M98 61 57 164M82 81 61 143M160 53 89 226M177 79 105 232M187 111 121 234M190 145 140 235M183 179 158 231M151 25 56 184M171 50 61 210M187 81 76 221M193 119 95 229M188 158 119 234M174 193 145 235M76 78 187 81M61 111 193 119M56 147 190 145M61 184 183 179M70 208 174 193M88 229 158 231" fill="none" stroke="#f4e3ad" stroke-opacity=".34" stroke-width="1"/>
+      <defs>
+        <linearGradient id="moon-fill" x1="30" x2="165" y1="45" y2="228" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#f8eabf" stop-opacity=".18"/>
+          <stop offset="1" stop-color="#b9c9ff" stop-opacity=".06"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="SleepSync home">
+        <span class="brand-icon" aria-hidden="true"><img src="assets/sleepsync-icon.png" alt=""></span>
+        <span class="brand-name">Sleep<span>Sync</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-link" type="button" data-view="cycle">Cycle</button>
+        <button class="nav-link" type="button" data-view="relax">Relax</button>
+        <button class="nav-link" type="button" data-view="guides">Guides</button>
+        <button class="nav-link" type="button" data-view="trends">Trends</button>
+        <div class="help-menu">
+          <button class="nav-link help-menu-trigger" id="help-menu-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="help-menu-panel">Help</button>
+          <div class="help-menu-panel" id="help-menu-panel" role="menu" hidden>
+            <button class="help-menu-item" id="open-prd" type="button" role="menuitem">Product requirements document</button>
+            <button class="help-menu-item" id="open-trd" type="button" role="menuitem">Technical requirements document</button>
+          </div>
+        </div>
+      </nav>
+      <div class="header-actions">
+        <a class="header-download" href="https://drive.google.com/uc?export=download&amp;confirm=t&amp;id=1ybfqEwmVlqOTUGgDbvisfIPHjRhlOdPc">Download <span aria-hidden="true">↓</span></a>
+        <a class="header-policy" href="privacy.html">Privacy</a>
+      </div>
+    </header>
+    <nav class="document-shortcuts" aria-label="Project documents">
+      <a href="prd.html">Product Requirements Document <span aria-hidden="true">→</span></a>
+      <a href="trd.html">Technical Requirements Document <span aria-hidden="true">→</span></a>
+    </nav>
+
+    <main>
+      <section class="view-panel home-view" data-panel="home" aria-labelledby="home-title">
+        <div class="hero-copy">
+          <h1 id="home-title">Your Sleep Cycle:<br><span>Rest &amp; Restore</span></h1>
+          <div class="hero-credits" aria-label="Project credits">
+            <span>Created by <strong>Shane S. Bicarme</strong></span>
+            <span>BSIT 3-WMAD · ISU Cauayan Campus</span>
+            <span><strong>Dr. Erick R. Abuzo, DIT</strong> · Consultant/Adviser</span>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <section class="glass-card tracker-card" aria-label="Sleep session timer">
+            <div class="timer-display" id="sleep-timer" role="timer" aria-live="off">00:00:00</div>
+            <div class="sleep-stages" aria-label="Sleep stages">
+              <div>Light Sleep:</div>
+              <div>Deep Sleep:</div>
+              <div>Awake:</div>
+            </div>
+            <p class="estimate-note">Sleep stages are shown for reference and are not measured by this website.</p>
+            <div class="button-row">
+              <button class="button button-primary" id="start-sleep" type="button">Start Sleep</button>
+              <button class="button button-secondary" id="stop-sleep" type="button" disabled>Stop Sleep</button>
+            </div>
+            <p class="session-message" id="session-message" role="status"></p>
+          </section>
+
+        </div>
+        <div class="cycle-metrics">
+          <section class="glass-card cycle-metric" aria-labelledby="score-heading">
+            <h2 id="score-heading">Sleep Quality Score</h2>
+            <div class="metric-value"><strong id="sleep-score">—</strong><span>/ 100</span></div>
+            <div class="score-meter" id="score-meter" role="progressbar" aria-label="Estimated sleep quality score" aria-valuemin="0" aria-valuemax="100" aria-valuetext="No score yet"><span></span></div>
+            <p class="score-caption" id="score-caption">Log sleep duration in Trends to see an estimate.</p>
+          </section>
+          <section class="glass-card cycle-metric" aria-labelledby="heart-rate-heading">
+            <h2 id="heart-rate-heading">Heart Rate Stability</h2>
+            <div class="metric-value metric-unavailable">Not measured</div>
+            <p class="metric-note">Heart-rate tracking is not available on this website.</p>
+          </section>
+        </div>
+        <section class="homepage-about" id="about-sleepsync" aria-labelledby="about-title">
+          <section class="showcase-section">
+            <div class="showcase-intro">
+              <p class="eyebrow">ABOUT SLEEPSYNC</p>
+              <h2 id="about-title">Your complete <span>sleep companion.</span></h2>
+              <p>SleepSync brings sleep-cycle tracking, relaxation audio, and hygiene guides together to help you wind down and learn about healthier sleep habits.</p>
+            </div>
+            <section class="app-description" aria-label="SleepSync description">
+              <div class="app-description-grid">
+                <article class="glass-card app-description-card">
+                  <h4>Short Description</h4>
+                  <p>SleepSync helps you wind down with a sleep timer, calming sounds, sleep education, and simple tools to reflect on your sleep habits.</p>
+                </article>
+                <article class="glass-card app-description-card">
+                  <h4>Full Description</h4>
+                  <p>SleepSync is a sleep wellness companion designed to support a calmer bedtime routine and help you learn about healthy sleep habits. Use the sleep timer to record a session, explore educational information about Light, Deep, and REM sleep, listen to relaxing soundscapes, and browse practical sleep-hygiene guides. The Trends view lets you review the sleep-duration entries you record, while the homepage provides an estimated sleep quality score based on logged duration.</p>
+                  <p>Whether you are building a more consistent bedtime routine or simply curious about your sleep habits, SleepSync brings useful sleep tools and information together in one place. Your sleep entries are stored in your browser on this device.</p>
+                  <h5>Features</h5>
+                  <ul class="app-feature-list">
+                    <li>Sleep timer to record sessions and sleep duration.</li>
+                    <li>Educational information about Light, Deep, and REM sleep.</li>
+                    <li>Relaxing soundscapes for your bedtime routine.</li>
+                    <li>Practical sleep-hygiene guides.</li>
+                    <li>Sleep trends to review logged sleep durations.</li>
+                    <li>An estimated sleep quality score based on logged duration.</li>
+                  </ul>
+                  <p>SleepSync does not measure sleep stages or heart rate. Its estimates and educational content are for general wellness and are not medical advice.</p>
+                </article>
+              </div>
+            </section>
+            <div class="brand-showcase">
+              <p class="eyebrow">MEET SLEEPSYNC</p>
+              <img class="about-brand-logo" src="assets/sleepsync-logo.png" alt="SleepSync logo">
+            </div>
+            <figure class="feature-artwork">
+              <figcaption>
+                <strong>Featured Graphic</strong>
+                <span>A visual overview of SleepSync and its sleep wellness tools.</span>
+              </figcaption>
+              <img src="assets/project-screenshots/feature-graphic.png" alt="SleepSync feature graphic showing the sleep cycle tracking, relaxation audio, and hygiene guides features">
+            </figure>
+            <p class="showcase-note"><span aria-hidden="true">◈</span> Your sleep entries stay in your browser. SleepSync is a general wellness tool, not a medical device.</p>
+          </section>
+          <section class="project-showcase" aria-label="SleepSync feature artwork">
+            <div class="showcase-intro">
+              <h2>App Screenshots</h2>
+              <p>Take a closer look at the tools and information available in SleepSync.</p>
+            </div>
+            <div class="screenshot-gallery mockup-gallery">
+              <a class="showcase-image" href="assets/project-screenshots/sleep-cycle.png" target="_blank" rel="noopener noreferrer"><span class="showcase-caption"><strong>Sleep-cycle tracking</strong><span>Start a session and review your recorded sleep duration.</span></span><img src="assets/project-screenshots/sleep-cycle.png" alt="SleepSync sleep cycle feature image"></a>
+              <a class="showcase-image" href="assets/project-screenshots/sleep-stages.png" target="_blank" rel="noopener noreferrer"><span class="showcase-caption"><strong>Sleep stages</strong><span>Learn about Light, Deep, and REM sleep.</span></span><img src="assets/project-screenshots/sleep-stages.png" alt="SleepSync sleep stages feature image"></a>
+              <a class="showcase-image" href="assets/project-screenshots/relaxation-audio.png" target="_blank" rel="noopener noreferrer"><span class="showcase-caption"><strong>Relaxation audio</strong><span>Choose a calming soundscape for your bedtime routine.</span></span><img src="assets/project-screenshots/relaxation-audio.png" alt="SleepSync relaxation audio feature image"></a>
+              <a class="showcase-image" href="assets/project-screenshots/sleep-trends.png" target="_blank" rel="noopener noreferrer"><span class="showcase-caption"><strong>Sleep trends</strong><span>Review logged sleep durations and summaries.</span></span><img src="assets/project-screenshots/sleep-trends.png" alt="SleepSync sleep trends feature image"></a>
+              <a class="showcase-image" href="assets/project-screenshots/sleep-guides.png" target="_blank" rel="noopener noreferrer"><span class="showcase-caption"><strong>Sleep guides</strong><span>Browse practical tips for a calmer bedtime.</span></span><img src="assets/project-screenshots/sleep-guides.png" alt="SleepSync sleep hygiene guide feature image"></a>
+            </div>
+            <nav class="showcase-links" aria-label="More about SleepSync">
+              <a href="prd.html">Product Requirements Document <span aria-hidden="true">→</span></a>
+              <a href="trd.html">Technical Requirements Document <span aria-hidden="true">→</span></a>
+              <a href="privacy.html">Privacy policy <span aria-hidden="true">→</span></a>
+            </nav>
+          </section>
+        </section>
+      </section>
+
+      <section class="view-panel content-view cycle-info-view" data-panel="cycle" aria-labelledby="cycle-title" hidden>
+        <div class="section-intro">
+          <h1 id="cycle-title">Understanding Your <span>Sleep Stages</span></h1>
+        </div>
+        <div class="cycle-stage-list">
+          <section class="glass-card cycle-stage">
+            <h2>Light Sleep</h2>
+            <p>Prepares your body for deep sleep. Easy to wake up from.</p>
+          </section>
+          <section class="glass-card cycle-stage">
+            <h2>Deep Sleep</h2>
+            <p>Essential for physical recovery, muscle repair, and immune strength.</p>
+          </section>
+          <section class="glass-card cycle-stage">
+            <h2>REM Sleep</h2>
+            <p>Critical for memory consolidation, brain function, and vivid dreaming.</p>
+          </section>
+          <aside class="glass-card cycle-tip">
+            <h2>Tip</h2>
+            <p>A full sleep cycle takes about 90 minutes. Aim for 5 complete cycles (7.5 hours) per night!</p>
+          </aside>
+        </div>
+        <div class="cycle-home-action">
+          <button class="button button-primary" type="button" data-open-view="home">Home</button>
+        </div>
+      </section>
+
+      <section class="view-panel content-view" data-panel="relax" aria-labelledby="relax-title" hidden>
+        <div class="section-intro">
+          <p class="eyebrow">A MOMENT TO UNWIND</p>
+          <h1 id="relax-title">Relaxation <span>soundscapes</span></h1>
+          <p>Choose a soft, locally generated tone to ease into a quieter moment. Start audio only when you’re ready.</p>
+        </div>
+        <div class="sound-grid">
+          <button class="sound-card" type="button" data-sound="rain">
+            <span class="sound-icon" aria-hidden="true">☂</span><span class="sound-name">Soft rain</span><span class="sound-detail">A gentle, steady hush</span><span class="sound-play">Play sound <span aria-hidden="true">↗</span></span>
+          </button>
+          <button class="sound-card" type="button" data-sound="piano">
+            <span class="sound-icon" aria-hidden="true">♫</span><span class="sound-name">Solo piano</span><span class="sound-detail">Slow, mellow notes</span><span class="sound-play">Play sound <span aria-hidden="true">↗</span></span>
+          </button>
+          <button class="sound-card" type="button" data-sound="night">
+            <span class="sound-icon" aria-hidden="true">✧</span><span class="sound-name">Night air</span><span class="sound-detail">A low, spacious drone</span><span class="sound-play">Play sound <span aria-hidden="true">↗</span></span>
+          </button>
+        </div>
+        <div class="sound-controls glass-card">
+          <div><p class="eyebrow">NOW PLAYING</p><p id="sound-status" class="sound-status" role="status">Nothing playing</p></div>
+          <label class="volume-control" for="volume">Volume <input id="volume" type="range" min="0" max="35" value="15"></label>
+          <button class="button button-secondary" id="stop-sound" type="button" disabled>Stop sound</button>
+        </div>
+        <p class="privacy-hint"><span aria-hidden="true">◈</span> Sounds are created in your browser. No audio is recorded or sent anywhere.</p>
+      </section>
+
+      <section class="view-panel content-view" data-panel="guides" aria-labelledby="guides-title" hidden>
+        <div class="section-intro">
+          <p class="eyebrow">SMALL HABITS, SOFTER NIGHTS</p>
+          <h1 id="guides-title">Sleep hygiene <span>guides</span></h1>
+          <p>Simple ideas to help make your sleep environment and bedtime routine feel more restful.</p>
+        </div>
+        <div class="guide-grid">
+          <article class="glass-card guide-card">
+            <span class="guide-number">01</span><h2>Find your rhythm</h2>
+            <p>Try going to bed and waking up around the same time each day, weekends included. A consistent routine can support your body's natural sleep-wake rhythm.</p>
+          </article>
+          <article class="glass-card guide-card">
+            <span class="guide-number">02</span><h2>Make space for rest</h2>
+            <p>Keep your room dark, quiet, and comfortably cool. A restful environment can help signal that it’s time to wind down.</p>
+          </article>
+          <article class="glass-card guide-card">
+            <span class="guide-number">03</span><h2>Ease away from screens</h2>
+            <p>If it feels right for you, put devices aside for a while before bed and choose a quieter activity instead.</p>
+          </article>
+          <article class="glass-card guide-card">
+            <span class="guide-number">04</span><h2>Build a wind-down ritual</h2>
+            <p>Gentle stretching, slow breathing, or soothing sounds can help you shift from a busy day toward a calmer bedtime.</p>
+          </article>
+          <article class="glass-card guide-card">
+            <span class="guide-number">05</span><h2>Notice what affects you</h2>
+            <p>Caffeine, alcohol, large meals, and late-day naps affect people differently. Notice your own patterns and adjust what works for you.</p>
+          </article>
+          <article class="glass-card guide-card guide-note">
+            <span class="guide-number">A GENTLE REMINDER</span><h2>Everyone sleeps differently</h2>
+            <p>These ideas are for general wellbeing, not medical advice. If sleep troubles are persistent or affecting your daily life, consider speaking with a healthcare professional.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="view-panel content-view" data-panel="trends" aria-labelledby="trends-title" hidden>
+        <div class="section-intro">
+          <p class="eyebrow">YOUR NIGHTS, AT A GLANCE</p>
+          <h1 id="trends-title">Sleep trends <span>&amp; insights</span></h1>
+          <p>Log how long you slept and look for patterns over time. Your entries stay on this device.</p>
+        </div>
+        <div class="trends-grid">
+          <section class="glass-card log-card" aria-labelledby="log-title">
+            <p class="eyebrow">A NEW ENTRY</p>
+            <h2 id="log-title">How did you sleep?</h2>
+            <form id="sleep-log-form">
+              <label for="hours-slept">Hours slept last night</label>
+              <div class="input-with-suffix"><input id="hours-slept" name="hours" type="number" min="0.5" max="24" step="0.25" placeholder="e.g. 7.5" required><span>hours</span></div>
+              <label for="sleep-date">Night of</label>
+              <input id="sleep-date" name="date" type="date" required>
+              <button class="button button-primary log-button" type="submit">Log sleep <span aria-hidden="true">→</span></button>
+              <p class="form-message" id="log-message" role="status"></p>
+            </form>
+          </section>
+          <section class="glass-card chart-card" aria-labelledby="chart-title">
+            <div class="card-heading">
+              <div><p class="eyebrow">RECENT SLEEP</p><h2 id="chart-title">Your last 7 nights</h2></div>
+              <span class="chart-unit">HOURS</span>
+            </div>
+            <div id="sleep-chart" class="sleep-chart" role="img" aria-label="No sleep entries yet"></div>
+            <div class="chart-legend"><span><i></i> Hours slept</span><span class="chart-target"><i></i> 7–9 hour guide</span></div>
+          </section>
+        </div>
+        <section class="glass-card history-card" aria-labelledby="history-title">
+          <div class="card-heading">
+            <div><p class="eyebrow">YOUR JOURNAL</p><h2 id="history-title">Recent entries</h2></div>
+            <span class="history-count" id="history-count">0 nights</span>
+          </div>
+          <div id="sleep-history" class="sleep-history"><p class="empty-state">Your logged nights will appear here. Add your first entry above.</p></div>
+          <button class="text-button clear-data" id="clear-data" type="button" hidden>Clear sleep history</button>
+        </section>
+      </section>
+
+    </main>
+
+    <dialog class="help-dialog" id="trd-dialog" aria-labelledby="trd-dialog-title">
+      <div class="help-dialog-header">
+        <h2 id="trd-dialog-title">SleepSync technical requirements</h2>
+        <button class="help-dialog-close" id="close-trd" type="button" aria-label="Close technical requirements">×</button>
+      </div>
+      <iframe class="help-dialog-frame" src="trd.html?modal=1" title="SleepSync Technical Requirements Document"></iframe>
+    </dialog>
+    <dialog class="help-dialog" id="prd-dialog" aria-labelledby="prd-dialog-title">
+      <div class="help-dialog-header">
+        <h2 id="prd-dialog-title">SleepSync product requirements</h2>
+        <button class="help-dialog-close" id="close-prd" type="button" aria-label="Close product requirements">×</button>
+      </div>
+      <iframe class="help-dialog-frame" src="prd.html?modal=1" title="SleepSync Product Requirements Document"></iframe>
+    </dialog>
+
+    <footer class="site-footer">
+      <a class="footer-brand" href="index.html">Sleep<span>Sync</span></a>
+      <p>Made for slower evenings and more mindful mornings.</p>
+      <div class="footer-links">
+        <a href="prd.html">PRD</a>
+        <a href="trd.html">TRD</a>
+        <a href="https://drive.google.com/uc?export=download&amp;confirm=t&amp;id=1ybfqEwmVlqOTUGgDbvisfIPHjRhlOdPc">Download APK</a>
+        <a href="privacy.html">Privacy policy</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

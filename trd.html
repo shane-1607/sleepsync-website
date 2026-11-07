@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d28">
+  <meta name="description" content="SleepSync technical requirements draft, separating verified website behavior from unconfirmed Android implementation details.">
+  <title>Technical Requirements — SleepSync</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="sky" aria-hidden="true">
+    <span class="sky-star star-one"></span><span class="sky-star star-two"></span>
+    <span class="sky-star star-three"></span><span class="sky-star star-four"></span>
+    <span class="sky-star star-five"></span><span class="sky-star star-six"></span>
+    <span class="sky-star star-seven"></span><span class="sky-star star-eight"></span>
+    <span class="sky-glow"></span>
+  </div>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="SleepSync home">
+        <span class="brand-icon" aria-hidden="true"><img src="assets/sleepsync-icon.png" alt=""></span>
+        <span class="brand-name">Sleep<span>Sync</span></span>
+      </a>
+      <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Back to SleepSync</a>
+    </header>
+    <main class="document-main">
+      <section class="document-heading">
+        <p class="eyebrow"><span class="status-dot"></span> PROJECT DOCUMENT</p>
+        <h1>Technical requirements <span>document</span></h1>
+        <p>SleepSync · Draft 1.0 · November 6, 2026</p>
+      </section>
+      <article class="glass-card document-content">
+        <section>
+          <h2>1. Application title and full description</h2>
+          <p><strong>Application title:</strong> SleepSync — Rest &amp; Restore</p>
+          <p><strong>Full description:</strong> SleepSync is a sleep-wellness companion designed to help users build a calming bedtime routine. Its Cycle area presents a sleep-session timer and sleep-related information; Relax offers relaxation-audio choices; Guides provides educational sleep-hygiene tips and information about sleep stages; and Trends lets users record sleep duration and review a score or summary. SleepSync is intended for general wellness and education, not diagnosis or treatment. The supplied materials mention heart-rate stability, but heart-rate sensing and automatic sleep-stage detection have not been verified and should not be represented as measured features without confirming the Android app implementation.</p>
+        </section>
+        <section>
+          <h2>2. System boundary</h2>
+          <p>SleepSync currently has two distinct deliverables: an Android app represented by user-provided screenshots and a downloadable APK, and a static companion website implemented with HTML, CSS, and JavaScript. Website behavior must not be used as evidence for Android-app architecture.</p>
+        </section>
+        <section>
+          <h2>3. Android application: known and unknown</h2>
+          <p><strong>Known from project materials:</strong> an APK download link was provided; an AIA project file is reported to exist; the screenshots show Cycle, Relax, Guides, and Trends interfaces.</p>
+          <p><strong>Platform:</strong> the AIA extension is associated with MIT App Inventor projects, but the project file has not been reviewed. Confirm the authoring environment and app build/version directly from the AIA and APK before finalizing this document.</p>
+          <p><strong>Unconfirmed:</strong> app architecture, component and extension inventory, Android API/version targets, persistence mechanism, audio implementation, permissions, network behavior, sensor integrations, build process, and release signing setup.</p>
+        </section>
+        <section>
+          <h2>4. Website implementation: verified</h2>
+          <ul>
+            <li><strong>Delivery:</strong> static files: <code>index.html</code>, <code>privacy.html</code>, <code>styles.css</code>, <code>app.js</code>, and local image assets.</li>
+            <li><strong>Sleep entries:</strong> browser local storage under <code>sleepsync.entries.v1</code>. Entries are device/browser-specific and are not synchronized to the Android app.</li>
+            <li><strong>Timer:</strong> a timestamp is stored locally under <code>sleepsync.session-start.v1</code> so a web session can resume after reload.</li>
+            <li><strong>Score:</strong> a simple website estimate based on entered sleep duration; it is not a medical measurement.</li>
+            <li><strong>Relaxation audio:</strong> generated client-side using the Web Audio API after user interaction; the website does not record microphone audio.</li>
+            <li><strong>Navigation:</strong> Cycle, Relax, Guides, and Trends are client-side sections in the homepage.</li>
+            <li><strong>External link:</strong> the header Download button points to the developer-provided Google Drive file URL. The Drive file's availability and download confirmation are controlled by Google Drive.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>5. Data and privacy requirements</h2>
+          <ul>
+            <li>Explain the collection, purpose, storage, sharing, retention, and deletion of data separately for the website and Android app.</li>
+            <li>Do not claim that the Android application is offline-only, uses local-only storage, or collects no data until its code, manifest, and behavior have been checked.</li>
+            <li>Do not collect health-sensor data without a confirmed feature, clear user permission, and an accurate privacy notice.</li>
+            <li>Provide a clear way to delete locally stored website entries.</li>
+            <li>Keep release signing keys, passwords, and other signing credentials private.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>6. Health and measurement constraints</h2>
+          <p>No verified heart-rate sensor or automatic sleep-stage measurement is documented here. Values shown as sleep stages or scores must be described as estimates or educational content unless the Android implementation and measurement method are confirmed and validated.</p>
+        </section>
+        <section>
+          <h2>7. Verification checklist</h2>
+          <ul>
+            <li>Inspect the AIA source and record its actual components, storage, blocks, and permissions.</li>
+            <li>Inspect the APK manifest and verify the app package, version, minimum/target Android versions, and requested permissions.</li>
+            <li>Test Cycle, Relax, Guides, and Trends on a physical Android device and document expected behavior.</li>
+            <li>Verify if audio works offline, whether data persists across app restarts, and how users can clear saved data.</li>
+            <li>Confirm whether sensor access, network requests, analytics, ads, or third-party SDKs exist before making privacy statements.</li>
+            <li>Test the published website and Drive link from a signed-out browser before sharing them publicly.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>8. Project credits</h2>
+          <p><strong>Developer:</strong> Shane S. Bicarme · BSIT 3-WMAD, ISU Cauayan Campus<br>
+          <strong>Consultant/Adviser:</strong> Dr. Erick R. Abuzo, DIT</p>
+        </section>
+      </article>
+    </main>
+    <footer class="site-footer">
+      <a class="footer-brand" href="index.html">Sleep<span>Sync</span></a>
+      <p>SleepSync technical requirements · Draft 1.0</p>
+      <div class="footer-links"><a href="prd.html">Product requirements</a><span aria-hidden="true">·</span><a href="privacy.html">Privacy policy</a></div>
+    </footer>
+  </div>
+  <script>
+    if (new URLSearchParams(window.location.search).has("modal")) {
+      document.body.classList.add("document-embed");
+    }
+  </script>
+</body>
+</html>
